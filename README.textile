@@ -8,6 +8,10 @@ Just antiword, Ruby and a few gems (1.8.6+ as far as I know).
 
 h1. using
 
+Install with @gem install antiwordr@
+
+"http://gemcutter.org/gems/antiwordr":http://gemcutter.org/gems/antiwordr
+
 <pre><code lang="ruby">require 'antiwordr'
 require 'nokogiri'
 file = DocFilePath.new([Path to Source PDF])
