@@ -45,7 +45,7 @@ module AntiWordR
       if (output.include?("command not found"))
         raise AntiWordRError, "AntiWordR requires antiword to be installed"
       elsif (output.include?("is not a Word Document"))
-        raise AntiWordRError, "#{@path} is not a Word Document"
+        raise AntiWordRError, "Source document is not a Word Document"
       elsif (output.include?("Error:"))
         raise AntiWordRError, output.split("\n").first.to_s.chomp
       else

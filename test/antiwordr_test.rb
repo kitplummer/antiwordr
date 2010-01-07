@@ -23,7 +23,7 @@ class DocFileTest < Test::Unit::TestCase
       file = DocFilePath.new(TEST_NON_DOC, ".")
       file.convert
     end
-    assert_equal "#{TEST_NON_DOC} is not a Word Document", e.to_s
+    assert_equal "Source document is not a Word Document", e.to_s
   end
 
   def test_bad_docfile_new
@@ -54,33 +54,33 @@ class DocFileTest < Test::Unit::TestCase
     file.convert_to_docbook_document().css('para').first.to_s
   end
 
-  #   def test_invalid_URL_pdffile
-  #     e = assert_raise AntiWordRError do
-  #       file = DocFileUrl.new("blah", ".", nil, nil)
-  #     end
-  #     assert_equal "invalid file url", e.to_s
-  #   end
-  #   
-  #   def test_invalid_URL_resource_pdffile
-  #     e = assert_raise AntiWordRError do
-  #       file = DocFileUrl.new("http://github.com/kitplummer/blah", ".", nil, nil)
-  #     end
-  #     assert_equal "404 Not Found", e.to_s
-  #   end
-  #   
-  #   def test_invalid_URL_pdf_pdffile
-  #     e = assert_raise AntiWordRError do
-  #       file = DocFileUrl.new(TEST_URL_NON_DOC, ".", nil, nil)
-  #       file.convert
-  #     end
-  #     assert_equal "Error: May not be a DOC file (continuing anyway)", e.to_s
-  #   end
-  #   
-  #   def test_valid_URL_pdffile
-  #     # http://github.com/kitplummer/pdftohtmlr/raw/master/test/test.pdf
-  #     file = DocFileUrl.new(TEST_URL_DOC, ".", nil, nil)
-  #     assert_equal "String", file.convert().class.to_s
-  #     assert_equal `pdftohtml -stdout "#{TEST_DOC_PATH}"`, file.convert()
-  #   end
+  def test_invalid_URL_docfile
+    e = assert_raise AntiWordRError do
+      file = DocFileUrl.new("blah", ".")
+    end
+    assert_equal "invalid file url", e.to_s
+  end
+
+  def test_invalid_URL_resource_docfile
+    e = assert_raise AntiWordRError do
+      file = DocFileUrl.new("http://github.com/kitplummer/blah", ".")
+    end
+    assert_equal "404 Not Found", e.to_s
+  end
+
+  def test_invalid_URL_docfile
+    e = assert_raise AntiWordRError do
+      file = DocFileUrl.new(TEST_URL_NON_DOC, ".")
+      file.convert
+    end
+    assert_equal "Source document is not a Word Document", e.to_s
+  end
+
+  def test_valid_URL_docfile
+    # http://github.com/kitplummer/pdftohtmlr/raw/master/test/test.pdf
+    file = DocFileUrl.new(TEST_URL_DOC)
+    assert_equal "String", file.convert().class.to_s
+    assert_equal `antiword "#{TEST_DOC_PATH}"`, file.convert()
+  end
 
 end
