@@ -1,0 +1,22 @@
+h1. antiwordr
+
+Wrapper around the command line tool antiword which converts Word Document (97/2003) to text or Docbook.
+
+h1. requirements
+
+Just antiword, Ruby and a few gems (1.8.6+ as far as I know).
+
+h1. using
+
+<pre><code lang="ruby">require 'antiwordr'
+require 'nokogiri'
+file = DocFilePath.new([Path to Source PDF])
+string = file.convert()
+xml = file.convert_to_docbook()
+doc = file.convert_to_docbook_document()</code></pre>
+
+See included test cases for more usage examples.
+
+h1. license
+
+MIT (See included MIT-LICENSE)
